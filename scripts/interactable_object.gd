@@ -1,0 +1,2 @@
+class_name InteractableObject
+extends StaticBody2D
