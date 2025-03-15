@@ -6,7 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_g2els")
+speed = 50000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0wfyh")
