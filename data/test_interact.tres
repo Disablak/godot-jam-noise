@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResInteract" load_steps=2 format=3 uid="uid://dqvklxf4clke5"]
+
+[ext_resource type="Script" uid="uid://vwdlvgyn2q64" path="res://scripts/resources/res_interact.gd" id="1_dq3b0"]
+
+[resource]
+script = ExtResource("1_dq3b0")
+options = Array[String](["one", "two"])
+metadata/_custom_type_script = "uid://vwdlvgyn2q64"

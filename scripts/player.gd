@@ -44,7 +44,3 @@ func _on_any_ui_appear():
 
 func _on_all_ui_closed():
 	set_physics_process(true)
-
-
-func _show_panel_interaction(pos: Vector2):
-	Globals.gui.panel_interact.show_panel(pos)

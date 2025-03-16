@@ -1,15 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdnqjcinkothg"]
+[gd_scene load_steps=10 format=3 uid="uid://cdnqjcinkothg"]
 
 [ext_resource type="Texture2D" uid="uid://b7m4wopcw3rya" path="res://sprites/home_test.png" id="1_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://j5xmm3wjcflk" path="res://scenes/player.tscn" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_4wyf3"]
+[ext_resource type="Script" uid="uid://vwdlvgyn2q64" path="res://scripts/resources/res_interact.gd" id="4_71j4m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(100, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0juu"]
 size = Vector2(1920, 100)
+
+[sub_resource type="Resource" id="Resource_qfnet"]
+script = ExtResource("4_71j4m")
+options = Array[String](["some 1", "some sjot"])
+metadata/_custom_type_script = "uid://vwdlvgyn2q64"
+
+[sub_resource type="Resource" id="Resource_71j4m"]
+script = ExtResource("4_71j4m")
+options = Array[String](["again", "finish"])
+metadata/_custom_type_script = "uid://vwdlvgyn2q64"
 
 [node name="World" type="Node2D"]
 
@@ -70,9 +81,11 @@ shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="InteractableObject" parent="House" instance=ExtResource("2_4wyf3")]
 position = Vector2(538, 513)
+res_interact = SubResource("Resource_qfnet")
 
 [node name="InteractableObject2" parent="House" instance=ExtResource("2_4wyf3")]
 position = Vector2(1405, 248)
+res_interact = SubResource("Resource_71j4m")
 
 [node name="Sprite2D" parent="House/InteractableObject2" index="1"]
 self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
