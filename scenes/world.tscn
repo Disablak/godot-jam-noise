@@ -1,29 +1,83 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdnqjcinkothg"]
+[gd_scene load_steps=7 format=3 uid="uid://cdnqjcinkothg"]
 
+[ext_resource type="Texture2D" uid="uid://b7m4wopcw3rya" path="res://sprites/home_test.png" id="1_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://j5xmm3wjcflk" path="res://scenes/player.tscn" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_4wyf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(100, 1080)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0juu"]
+size = Vector2(1920, 100)
+
 [node name="World" type="Node2D"]
+
+[node name="BackBlack" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(1920, 1080)
+texture = ExtResource("1_k0juu")
+centered = false
+
+[node name="House" type="Node2D" parent="."]
+
+[node name="BackHomeTest" type="Sprite2D" parent="House"]
+position = Vector2(979, 538)
+scale = Vector2(1.22798, 0.726008)
+texture = ExtResource("1_4wyf3")
+
+[node name="Wall" type="StaticBody2D" parent="House"]
+position = Vector2(229, 538)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall"]
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="Wall2" type="StaticBody2D" parent="House"]
+position = Vector2(1711, 538)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall2"]
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="Wall3" type="StaticBody2D" parent="House"]
+position = Vector2(975, 232)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall3"]
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="Wall5" type="StaticBody2D" parent="House"]
+position = Vector2(114, 311)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall5"]
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="Wall6" type="StaticBody2D" parent="House"]
+position = Vector2(2062, 678)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall6"]
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="Wall7" type="StaticBody2D" parent="House"]
+position = Vector2(-114, 807)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall7"]
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="Wall4" type="StaticBody2D" parent="House"]
+position = Vector2(994, 1072)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall4"]
+shape = SubResource("RectangleShape2D_k0juu")
+
+[node name="InteractableObject" parent="House" instance=ExtResource("2_4wyf3")]
+position = Vector2(538, 513)
+
+[node name="InteractableObject2" parent="House" instance=ExtResource("2_4wyf3")]
+position = Vector2(1405, 248)
+
+[node name="Sprite2D" parent="House/InteractableObject2" index="1"]
+self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_rwgxs")]
 position = Vector2(900, 527)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(45, 538)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_o5qli")
-
-[node name="InteractableObject" parent="." instance=ExtResource("2_4wyf3")]
-position = Vector2(895, 272)
-
-[node name="InteractableObject2" parent="." instance=ExtResource("2_4wyf3")]
-position = Vector2(1149, 312)
-
-[node name="Sprite2D" parent="InteractableObject2" index="1"]
-self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
-
-[editable path="InteractableObject2"]
+[editable path="House/InteractableObject2"]
