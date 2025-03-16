@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://buhlwnagyq3nh"]
+
+[ext_resource type="Script" uid="uid://djn180npenwvs" path="res://scripts/gui.gd" id="1_efmwq"]
+[ext_resource type="PackedScene" uid="uid://dfws2lkaydh6c" path="res://scenes/panel_interact.tscn" id="2_mfius"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_efmwq")
+
+[node name="PanelInteract" parent="." instance=ExtResource("2_mfius")]
+visible = false
+layout_mode = 0

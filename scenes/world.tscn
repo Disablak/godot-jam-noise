@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdnqjcinkothg"]
+
+[ext_resource type="PackedScene" uid="uid://j5xmm3wjcflk" path="res://scenes/player.tscn" id="1_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_4wyf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(100, 1080)
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rwgxs")]
+position = Vector2(900, 527)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(45, 538)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="InteractableObject" parent="." instance=ExtResource("2_4wyf3")]
+position = Vector2(895, 272)
+
+[node name="InteractableObject2" parent="." instance=ExtResource("2_4wyf3")]
+position = Vector2(1149, 312)
+
+[node name="Sprite2D" parent="InteractableObject2" index="1"]
+self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
+
+[editable path="InteractableObject2"]
