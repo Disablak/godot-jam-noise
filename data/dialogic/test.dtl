@@ -1,0 +1,7 @@
+join test_character center
+test_character: Hello world guys
+Що ти сказав подонок?
+- What can i do?
+	test_character: What can actually do? Hmm?
+- Fuck you okay?
+	test_character: Fuck YOU!

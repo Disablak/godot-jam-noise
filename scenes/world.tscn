@@ -34,57 +34,57 @@ centered = false
 
 [node name="BackHomeTest" type="Sprite2D" parent="House"]
 position = Vector2(979, 538)
-scale = Vector2(1.22798, 0.726008)
+scale = Vector2(1.3, 0.591)
 texture = ExtResource("1_4wyf3")
 
 [node name="Wall" type="StaticBody2D" parent="House"]
-position = Vector2(229, 538)
+position = Vector2(151, 535)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall"]
 shape = SubResource("RectangleShape2D_o5qli")
 
 [node name="Wall2" type="StaticBody2D" parent="House"]
-position = Vector2(1711, 538)
+position = Vector2(1759, 538)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall2"]
 shape = SubResource("RectangleShape2D_o5qli")
 
 [node name="Wall3" type="StaticBody2D" parent="House"]
-position = Vector2(975, 232)
+position = Vector2(976, 278)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall3"]
 shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="Wall5" type="StaticBody2D" parent="House"]
-position = Vector2(114, 311)
+position = Vector2(85, 338)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall5"]
 shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="Wall6" type="StaticBody2D" parent="House"]
-position = Vector2(2062, 678)
+position = Vector2(2047, 644)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall6"]
 shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="Wall7" type="StaticBody2D" parent="House"]
-position = Vector2(-114, 807)
+position = Vector2(-93, 750)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall7"]
 shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="Wall4" type="StaticBody2D" parent="House"]
-position = Vector2(994, 1072)
+position = Vector2(994, 989)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall4"]
 shape = SubResource("RectangleShape2D_k0juu")
 
 [node name="InteractableObject" parent="House" instance=ExtResource("2_4wyf3")]
-position = Vector2(538, 513)
+position = Vector2(599, 518)
 res_interact = SubResource("Resource_qfnet")
 
 [node name="InteractableObject2" parent="House" instance=ExtResource("2_4wyf3")]
-position = Vector2(1405, 248)
+position = Vector2(1341, 310)
 res_interact = SubResource("Resource_71j4m")
 
 [node name="Sprite2D" parent="House/InteractableObject2" index="1"]

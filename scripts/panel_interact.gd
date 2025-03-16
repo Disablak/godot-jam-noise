@@ -12,7 +12,6 @@ func show_panel(pos: Vector2, res_interact: ResInteract):
 	#set_focus_neighbor(SIDE_TOP, focus_neighbor_top)
 
 	_spawn_btns(res_interact)
-	set_size(container.size)
 
 
 func hide_panel():
@@ -31,4 +30,5 @@ func _spawn_btns(res_interact: ResInteract):
 
 
 func _on_click_btn():
+	Dialogic.start("test")
 	hide_panel()
