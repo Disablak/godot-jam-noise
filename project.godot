@@ -23,11 +23,14 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"main_hero": "res://data/dialogic/characters/main_hero.dch",
 "test_character": "res://data/dialogic/test_character.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
 directories/dtl_directory={
-"test": "res://data/dialogic/test.dtl"
+"t_computer_0": "res://data/dialogic/timelines/t_computer_0.dtl",
+"t_table_0": "res://data/dialogic/timelines/t_table_0.dtl",
+"test": "res://data/dialogic/timelines/test.dtl"
 }
 layout/style_list=["res://data/dialogic/style_test.tres"]
 layout/default_style="res://data/dialogic/style_test.tres"

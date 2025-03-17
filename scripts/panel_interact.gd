@@ -24,11 +24,11 @@ func _spawn_btns(res_interact: ResInteract):
 
 	for option in res_interact.options:
 		var btn = Button.new()
-		btn.button_down.connect(_on_click_btn)
-		btn.text = option
+		btn.button_down.connect(func(): _on_click_btn(option.time_line))
+		btn.text = option.title
 		container.add_child(btn)
 
 
-func _on_click_btn():
-	Dialogic.start("test")
+func _on_click_btn(timeline):
+	Globals.start_dialogic(timeline)
 	hide_panel()

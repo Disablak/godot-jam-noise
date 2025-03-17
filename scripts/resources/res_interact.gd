@@ -2,4 +2,4 @@ class_name ResInteract
 extends Resource
 
 
-@export var options: Array[String]
+@export var options: Array[ResInteractOption]
