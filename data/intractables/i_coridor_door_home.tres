@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResInteract" load_steps=4 format=3 uid="uid://cd6xkq2munt7c"]
+
+[ext_resource type="Script" uid="uid://dtnbg348kgq6m" path="res://scripts/resources/res_interact_option.gd" id="1_57gua"]
+[ext_resource type="Script" uid="uid://vwdlvgyn2q64" path="res://scripts/resources/res_interact.gd" id="2_h3d0e"]
+
+[sub_resource type="Resource" id="Resource_no8k5"]
+script = ExtResource("1_57gua")
+title = "Додому"
+time_line = 0
+move_to_level = 1
+metadata/_custom_type_script = "uid://dtnbg348kgq6m"
+
+[resource]
+script = ExtResource("2_h3d0e")
+options = Array[ExtResource("1_57gua")]([SubResource("Resource_no8k5")])
+metadata/_custom_type_script = "uid://vwdlvgyn2q64"

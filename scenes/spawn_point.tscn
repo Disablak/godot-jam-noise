@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://diklo6owjw4f0"]
+
+[ext_resource type="Script" uid="uid://kob6s4llan4m" path="res://scripts/spawn_point.gd" id="1_c3ytd"]
+[ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="2_v26hd"]
+
+[node name="SpawnPoint" type="Node2D" groups=["spawn_points"]]
+script = ExtResource("1_c3ytd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.133333, 1, 1)
+rotation = 0.785398
+scale = Vector2(50, 50)
+texture = ExtResource("2_v26hd")

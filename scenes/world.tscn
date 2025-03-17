@@ -1,52 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdnqjcinkothg"]
+[gd_scene load_steps=10 format=3 uid="uid://cdnqjcinkothg"]
 
-[ext_resource type="Texture2D" uid="uid://b7m4wopcw3rya" path="res://sprites/home_test.png" id="1_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://j5xmm3wjcflk" path="res://scenes/player.tscn" id="1_rwgxs"]
-[ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_4wyf3"]
-[ext_resource type="Script" uid="uid://vwdlvgyn2q64" path="res://scripts/resources/res_interact.gd" id="4_71j4m"]
-[ext_resource type="Script" uid="uid://dtnbg348kgq6m" path="res://scripts/resources/res_interact_option.gd" id="5_qfnet"]
-[ext_resource type="Resource" uid="uid://cbm78vpimu0np" path="res://data/intractables/i_house_door_inner.tres" id="6_i7141"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
-size = Vector2(100, 1080)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0juu"]
-size = Vector2(1920, 100)
+[ext_resource type="PackedScene" uid="uid://stcsksuorqh0" path="res://scenes/levels/lvl_house.tscn" id="2_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="3_k0juu"]
+[ext_resource type="Resource" uid="uid://cd6xkq2munt7c" path="res://data/intractables/i_coridor_door_home.tres" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://d2nm1xb0r2cl5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_i7141"]
+[ext_resource type="Script" uid="uid://dch852j2rtct8" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_4mrxx"]
+[ext_resource type="Script" uid="uid://cbj22vxtsjt1q" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_4mrxx"]
 
 [sub_resource type="Resource" id="Resource_7r4gi"]
-script = ExtResource("5_qfnet")
-title = "Щось там шось"
-time_line = 10
-move_to_level = 0
-metadata/_custom_type_script = "uid://dtnbg348kgq6m"
-
-[sub_resource type="Resource" id="Resource_qfnet"]
-script = ExtResource("4_71j4m")
-options = Array[ExtResource("5_qfnet")]([SubResource("Resource_7r4gi")])
-metadata/_custom_type_script = "uid://vwdlvgyn2q64"
-
-[sub_resource type="Resource" id="Resource_i7141"]
-script = ExtResource("5_qfnet")
-title = "Поговорить зі столом"
-time_line = 10
-move_to_level = 0
-metadata/_custom_type_script = "uid://dtnbg348kgq6m"
-
-[sub_resource type="Resource" id="Resource_4mrxx"]
-script = ExtResource("5_qfnet")
-title = "Грати компік"
-time_line = 20
-move_to_level = 0
-metadata/_custom_type_script = "uid://dtnbg348kgq6m"
-
-[sub_resource type="Resource" id="Resource_71j4m"]
-script = ExtResource("4_71j4m")
-options = Array[ExtResource("5_qfnet")]([SubResource("Resource_i7141"), SubResource("Resource_4mrxx")])
-metadata/_custom_type_script = "uid://vwdlvgyn2q64"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5onr"]
-size = Vector2(100, 100)
+script = ExtResource("7_4mrxx")
+duration = 1.0
+transition = 0
+ease = 2
 
 [node name="World" type="Node2D"]
 
@@ -56,79 +23,70 @@ scale = Vector2(1920, 1080)
 texture = ExtResource("1_k0juu")
 centered = false
 
-[node name="House" type="Node2D" parent="."]
+[node name="House" parent="." instance=ExtResource("2_4wyf3")]
 
-[node name="BackHomeTest" type="Sprite2D" parent="House"]
-position = Vector2(979, 538)
-scale = Vector2(1.3, 0.591)
-texture = ExtResource("1_4wyf3")
+[node name="LvlCoridor2" type="Node2D" parent="."]
+position = Vector2(0, 3000)
 
-[node name="Wall" type="StaticBody2D" parent="House"]
-position = Vector2(151, 535)
+[node name="Background" type="Sprite2D" parent="LvlCoridor2"]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(1920, 1080)
+texture = ExtResource("1_k0juu")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall"]
-shape = SubResource("RectangleShape2D_o5qli")
+[node name="Wall" type="Sprite2D" parent="LvlCoridor2"]
+self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+position = Vector2(0, 195)
+scale = Vector2(1920, 131)
+texture = ExtResource("1_k0juu")
+centered = false
 
-[node name="Wall2" type="StaticBody2D" parent="House"]
-position = Vector2(1759, 538)
+[node name="Wall2" type="Sprite2D" parent="LvlCoridor2"]
+self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+position = Vector2(0, 786)
+scale = Vector2(1920, 131)
+texture = ExtResource("1_k0juu")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall2"]
-shape = SubResource("RectangleShape2D_o5qli")
-
-[node name="Wall3" type="StaticBody2D" parent="House"]
-position = Vector2(976, 278)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall3"]
-shape = SubResource("RectangleShape2D_k0juu")
-
-[node name="Wall5" type="StaticBody2D" parent="House"]
-position = Vector2(85, 338)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall5"]
-shape = SubResource("RectangleShape2D_k0juu")
-
-[node name="Wall6" type="StaticBody2D" parent="House"]
-position = Vector2(2047, 644)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall6"]
-shape = SubResource("RectangleShape2D_k0juu")
-
-[node name="Wall7" type="StaticBody2D" parent="House"]
-position = Vector2(-93, 750)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall7"]
-shape = SubResource("RectangleShape2D_k0juu")
-
-[node name="Wall4" type="StaticBody2D" parent="House"]
-position = Vector2(994, 989)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="House/Wall4"]
-shape = SubResource("RectangleShape2D_k0juu")
-
-[node name="InteractableObject" parent="House" instance=ExtResource("2_4wyf3")]
-position = Vector2(599, 518)
-res_interact = SubResource("Resource_qfnet")
-
-[node name="InteractableObject2" parent="House" instance=ExtResource("2_4wyf3")]
-position = Vector2(1341, 310)
-res_interact = SubResource("Resource_71j4m")
-
-[node name="Sprite2D" parent="House/InteractableObject2" index="1"]
-self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
-
-[node name="InteractableObject3" parent="House" instance=ExtResource("2_4wyf3")]
-position = Vector2(977, 980)
+[node name="InteractableObject" parent="LvlCoridor2" instance=ExtResource("3_k0juu")]
+position = Vector2(884, 277)
 scale = Vector2(2, 1)
-res_interact = ExtResource("6_i7141")
-
-[node name="CollisionShape2D" parent="House/InteractableObject3" index="0"]
-shape = SubResource("RectangleShape2D_q5onr")
-
-[node name="Sprite2D" parent="House/InteractableObject3" index="1"]
-self_modulate = Color(0.532149, 0.745655, 0.223466, 1)
+res_interact = ExtResource("4_71j4m")
 
 [node name="Player" parent="." instance=ExtResource("1_rwgxs")]
 position = Vector2(900, 527)
 
-[editable path="House/InteractableObject2"]
-[editable path="House/InteractableObject3"]
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(900, 527)
+script = ExtResource("6_i7141")
+follow_mode = 5
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_7r4gi")
+follow_damping = true
+follow_damping_value = Vector2(0.4, 0.4)
+dead_zone_width = 0.2
+dead_zone_height = 0.2
+draw_limits = true
+limit_left = -200
+limit_top = -200
+limit_right = 2120
+limit_bottom = 1280
+metadata/_custom_type_script = "uid://d2nm1xb0r2cl5"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(900, 527)
+limit_left = -200
+limit_top = -200
+limit_right = 2120
+limit_bottom = 1280
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("8_4mrxx")
+metadata/_custom_type_script = "uid://cbj22vxtsjt1q"
+
+[editable path="LvlCoridor2/InteractableObject"]
