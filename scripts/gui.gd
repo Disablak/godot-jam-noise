@@ -12,13 +12,18 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
-		panel_interact.hide_panel()
-		Globals.on_all_ui_closed.emit()
+		_close_panel_interact()
 
 
 func _on_player_touched_object(object: InteractableObject):
 	panel_interact.show_panel(object.global_position, object.res_interact)
+	Globals.on_any_ui_appear.emit()
 
 
 func _on_player_departed_from_object():
+	_close_panel_interact()
+
+
+func _close_panel_interact():
 	panel_interact.hide_panel()
+	Globals.on_all_ui_closed.emit()
