@@ -7,7 +7,7 @@
 script = ExtResource("1_57gua")
 title = "Додому"
 time_line = 0
-move_to_level = 1
+move_to_sp = 2
 metadata/_custom_type_script = "uid://dtnbg348kgq6m"
 
 [resource]

@@ -17,7 +17,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_player_touched_object(object: InteractableObject):
-	panel_interact.show_panel(object.position, object.res_interact)
+	panel_interact.show_panel(object.global_position, object.res_interact)
 
 
 func _on_player_departed_from_object():

@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://stcsksuorqh0"]
+[gd_scene load_steps=18 format=3 uid="uid://stcsksuorqh0"]
 
 [ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_71glx"]
 [ext_resource type="Texture2D" uid="uid://b7m4wopcw3rya" path="res://sprites/home_test.png" id="1_e4uwe"]
+[ext_resource type="Script" uid="uid://b3qtdk0y4ph8v" path="res://scripts/level.gd" id="1_n7j6g"]
 [ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_5kal4"]
 [ext_resource type="Script" uid="uid://dtnbg348kgq6m" path="res://scripts/resources/res_interact_option.gd" id="3_71glx"]
 [ext_resource type="Script" uid="uid://vwdlvgyn2q64" path="res://scripts/resources/res_interact.gd" id="4_n7j6g"]
@@ -18,7 +19,7 @@ size = Vector2(1920, 100)
 script = ExtResource("3_71glx")
 title = "Щось там шось"
 time_line = 10
-move_to_level = 0
+move_to_sp = 0
 metadata/_custom_type_script = "uid://dtnbg348kgq6m"
 
 [sub_resource type="Resource" id="Resource_qfnet"]
@@ -30,14 +31,14 @@ metadata/_custom_type_script = "uid://vwdlvgyn2q64"
 script = ExtResource("3_71glx")
 title = "Поговорить зі столом"
 time_line = 10
-move_to_level = 0
+move_to_sp = 0
 metadata/_custom_type_script = "uid://dtnbg348kgq6m"
 
 [sub_resource type="Resource" id="Resource_4mrxx"]
 script = ExtResource("3_71glx")
 title = "Грати компік"
 time_line = 20
-move_to_level = 0
+move_to_sp = 0
 metadata/_custom_type_script = "uid://dtnbg348kgq6m"
 
 [sub_resource type="Resource" id="Resource_71j4m"]
@@ -48,7 +49,12 @@ metadata/_custom_type_script = "uid://vwdlvgyn2q64"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5onr"]
 size = Vector2(100, 100)
 
-[node name="House" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71glx"]
+size = Vector2(2420, 1580)
+
+[node name="LvlHouse" type="Node2D" node_paths=PackedStringArray("limit_camera")]
+script = ExtResource("1_n7j6g")
+limit_camera = NodePath("CameraLimit")
 
 [node name="BackBlack" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
@@ -136,6 +142,10 @@ sp = 2
 [node name="SpawnPoint2" parent="." instance=ExtResource("6_5kal4")]
 position = Vector2(1339, 424)
 sp = 3
+
+[node name="CameraLimit" type="CollisionShape2D" parent="."]
+position = Vector2(942, 535)
+shape = SubResource("RectangleShape2D_71glx")
 
 [editable path="InteractableObject2"]
 [editable path="InteractableObject3"]

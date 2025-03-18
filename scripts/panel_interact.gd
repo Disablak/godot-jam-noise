@@ -6,7 +6,7 @@ extends Control
 
 
 func show_panel(pos: Vector2, res_interact: ResInteract):
-	position = pos
+	global_position = pos
 	visible = true
 
 	#set_focus_neighbor(SIDE_TOP, focus_neighbor_top)
@@ -24,11 +24,18 @@ func _spawn_btns(res_interact: ResInteract):
 
 	for option in res_interact.options:
 		var btn = Button.new()
-		btn.button_down.connect(func(): _on_click_btn(option.time_line))
+		btn.button_down.connect(func(): _on_click_btn(option))
 		btn.text = option.title
 		container.add_child(btn)
 
 
-func _on_click_btn(timeline):
-	Globals.start_dialogic(timeline)
+func _on_click_btn(option: ResInteractOption):
 	hide_panel()
+
+	if option.time_line != Globals.DialogicTimeLine.None:
+		Globals.start_dialogic(option.time_line)
+		return
+
+	if option.move_to_sp != Globals.SpawnPoints.None:
+		Globals.move_player_to_spawn_point(option.move_to_sp)
+		return

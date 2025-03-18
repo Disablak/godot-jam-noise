@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx2okxglxcvav"]
+
+[ext_resource type="Script" uid="uid://b3qtdk0y4ph8v" path="res://scripts/level.gd" id="1_4basu"]
+[ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_aopmj"]
+[ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="2_4basu"]
+[ext_resource type="Resource" uid="uid://cd6xkq2munt7c" path="res://data/intractables/i_coridor_door_home.tres" id="3_acgug"]
+[ext_resource type="PackedScene" uid="uid://diklo6owjw4f0" path="res://scenes/spawn_point.tscn" id="4_aobc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aopmj"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acgug"]
+size = Vector2(2420, 1580)
+
+[node name="LvlCoridor" type="Node2D" node_paths=PackedStringArray("limit_camera")]
+script = ExtResource("1_4basu")
+limit_camera = NodePath("CameraLimit")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(1920, 1080)
+texture = ExtResource("1_aopmj")
+centered = false
+
+[node name="Wall" type="Sprite2D" parent="."]
+self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+position = Vector2(0, 195)
+scale = Vector2(1920, 131)
+texture = ExtResource("1_aopmj")
+centered = false
+
+[node name="Wall2" type="Sprite2D" parent="."]
+self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+position = Vector2(0, 786)
+scale = Vector2(1920, 131)
+texture = ExtResource("1_aopmj")
+centered = false
+
+[node name="InteractableObject" parent="." instance=ExtResource("2_4basu")]
+position = Vector2(884, 307)
+scale = Vector2(2, 1)
+res_interact = ExtResource("3_acgug")
+
+[node name="CollisionShape2D" parent="InteractableObject" index="0"]
+shape = SubResource("RectangleShape2D_aopmj")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("4_aobc5")]
+position = Vector2(884, 407)
+sp = 10
+
+[node name="CameraLimit" type="CollisionShape2D" parent="."]
+position = Vector2(942, 535)
+shape = SubResource("RectangleShape2D_acgug")
+
+[editable path="InteractableObject"]

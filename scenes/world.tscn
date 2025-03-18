@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdnqjcinkothg"]
+[gd_scene load_steps=8 format=3 uid="uid://cdnqjcinkothg"]
 
-[ext_resource type="Texture2D" uid="uid://di13udjyrieol" path="res://sprites/white_pixel.png" id="1_k0juu"]
 [ext_resource type="PackedScene" uid="uid://j5xmm3wjcflk" path="res://scenes/player.tscn" id="1_rwgxs"]
 [ext_resource type="PackedScene" uid="uid://stcsksuorqh0" path="res://scenes/levels/lvl_house.tscn" id="2_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://b1etmgpypsdny" path="res://scenes/interactable_object.tscn" id="3_k0juu"]
-[ext_resource type="Resource" uid="uid://cd6xkq2munt7c" path="res://data/intractables/i_coridor_door_home.tres" id="4_71j4m"]
+[ext_resource type="PackedScene" uid="uid://dx2okxglxcvav" path="res://scenes/levels/lvl_coridor.tscn" id="3_i7141"]
 [ext_resource type="Script" uid="uid://d2nm1xb0r2cl5" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_i7141"]
 [ext_resource type="Script" uid="uid://dch852j2rtct8" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_4mrxx"]
 [ext_resource type="Script" uid="uid://cbj22vxtsjt1q" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_4mrxx"]
@@ -17,71 +15,29 @@ ease = 2
 
 [node name="World" type="Node2D"]
 
-[node name="BackBlack" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(1920, 1080)
-texture = ExtResource("1_k0juu")
-centered = false
+[node name="LvlHouse" parent="." instance=ExtResource("2_4wyf3")]
 
-[node name="House" parent="." instance=ExtResource("2_4wyf3")]
-
-[node name="LvlCoridor2" type="Node2D" parent="."]
+[node name="LvlCoridor" parent="." instance=ExtResource("3_i7141")]
 position = Vector2(0, 3000)
-
-[node name="Background" type="Sprite2D" parent="LvlCoridor2"]
-self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(1920, 1080)
-texture = ExtResource("1_k0juu")
-centered = false
-
-[node name="Wall" type="Sprite2D" parent="LvlCoridor2"]
-self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
-position = Vector2(0, 195)
-scale = Vector2(1920, 131)
-texture = ExtResource("1_k0juu")
-centered = false
-
-[node name="Wall2" type="Sprite2D" parent="LvlCoridor2"]
-self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
-position = Vector2(0, 786)
-scale = Vector2(1920, 131)
-texture = ExtResource("1_k0juu")
-centered = false
-
-[node name="InteractableObject" parent="LvlCoridor2" instance=ExtResource("3_k0juu")]
-position = Vector2(884, 277)
-scale = Vector2(2, 1)
-res_interact = ExtResource("4_71j4m")
 
 [node name="Player" parent="." instance=ExtResource("1_rwgxs")]
 position = Vector2(900, 527)
 
-[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target") groups=["pcam"]]
 top_level = true
 position = Vector2(900, 527)
 script = ExtResource("6_i7141")
-follow_mode = 5
+follow_mode = 2
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_7r4gi")
-follow_damping = true
-follow_damping_value = Vector2(0.4, 0.4)
-dead_zone_width = 0.2
-dead_zone_height = 0.2
-draw_limits = true
-limit_left = -200
-limit_top = -200
-limit_right = 2120
-limit_bottom = 1280
+follow_damping_value = Vector2(0.2, 0.2)
+dead_zone_width = 0.15
+dead_zone_height = 0.15
 metadata/_custom_type_script = "uid://d2nm1xb0r2cl5"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
 physics_interpolation_mode = 1
 position = Vector2(900, 527)
-limit_left = -200
-limit_top = -200
-limit_right = 2120
-limit_bottom = 1280
-editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 process_priority = 300
@@ -89,4 +45,6 @@ process_physics_priority = 300
 script = ExtResource("8_4mrxx")
 metadata/_custom_type_script = "uid://cbj22vxtsjt1q"
 
-[editable path="LvlCoridor2/InteractableObject"]
+[editable path="LvlHouse"]
+[editable path="LvlHouse/InteractableObject2"]
+[editable path="LvlHouse/InteractableObject3"]

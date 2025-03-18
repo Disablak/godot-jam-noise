@@ -7,7 +7,7 @@
 script = ExtResource("1_no8k5")
 title = "Вийти в коридор"
 time_line = 0
-move_to_level = 2
+move_to_sp = 10
 metadata/_custom_type_script = "uid://dtnbg348kgq6m"
 
 [resource]
