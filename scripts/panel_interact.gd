@@ -20,6 +20,16 @@ func show_panel(pos: Vector2, res_interact: ResInteract):
 	_cur_res_interact = res_interact
 
 	_show_btns(res_interact)
+
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	var count = res_interact.options.size()
+	size = Vector2(
+		size.x,
+		(container.get_child(0).size.y * count) + (4 * (count - 1))
+	)
+
 	container.get_child(0).grab_focus()
 	#print("panel showed")
 
