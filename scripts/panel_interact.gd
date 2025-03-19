@@ -5,37 +5,73 @@ extends Control
 @onready var container = $VBoxContainer
 
 
+var _cur_res_interact: ResInteract
+
+
+func _ready() -> void:
+	for i in container.get_child_count():
+		var btn: Button = container.get_child(i)
+		btn.button_down.connect(func(): _on_click(i))
+
+
 func show_panel(pos: Vector2, res_interact: ResInteract):
 	global_position = pos
 	visible = true
+	_cur_res_interact = res_interact
 
-	#set_focus_neighbor(SIDE_TOP, focus_neighbor_top)
-
-	_spawn_btns(res_interact)
+	_show_btns(res_interact)
+	container.get_child(0).grab_focus()
+	#print("panel showed")
 
 
 func hide_panel():
+	if not visible:
+		return
+
 	visible = false
+	Globals.on_all_ui_closed.emit()
+	release_focus()
+	#print("panel hided")
 
 
-func _spawn_btns(res_interact: ResInteract):
+func _show_btns(res_interact: ResInteract):
+	# hide btns
 	for child in container.get_children():
-		child.queue_free()
+		child.visible = false
 
-	for option in res_interact.options:
-		var btn = Button.new()
-		btn.button_down.connect(func(): _on_click_btn(option))
+	# set btns
+	for i in res_interact.options.size():
+		var btn: Button = container.get_child(i)
+		var option: ResInteractOption = res_interact.options[i]
+		btn.visible = true
 		btn.text = option.title
-		container.add_child(btn)
+
+	# set focus
+	var count: int = res_interact.options.size()
+	for i in count:
+		var btn: Button = container.get_child(i)
+
+		btn.focus_neighbor_bottom = ""
+		btn.focus_neighbor_top = ""
+
+		if i + 1 < count:
+			btn.focus_neighbor_bottom = container.get_child(i + 1).get_path()
+
+		if i - 1 >= 0:
+			btn.focus_neighbor_top = container.get_child(i - 1).get_path()
+
+
+func _on_click(id: int):
+	_on_click_btn(_cur_res_interact.options[id])
 
 
 func _on_click_btn(option: ResInteractOption):
-	hide_panel()
-
 	if option.time_line != Globals.DialogicTimeLine.None:
 		Globals.start_dialogic(option.time_line)
+		hide_panel()
 		return
 
 	if option.move_to_sp != Globals.SpawnPoints.None:
 		Globals.move_player_to_spawn_point(option.move_to_sp)
+		hide_panel()
 		return

@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and _last_inter_object:
+	if event.is_action_pressed("interact") and _last_inter_object and not Globals.gui.is_any_ui:
 		Globals.on_player_touched_object.emit(_last_inter_object)
 
 
@@ -37,15 +37,16 @@ func _manage_collision():
 			if _last_inter_object:
 				_last_collision_id = last_collision.get_collider_id()
 				_last_inter_object.outline(true)
-				#Globals.on_player_touched_object.emit(_last_inter_object)
-				#_show_panel_interaction(last_collision.get_position())
-				#print(_last_collision_id)
 	else:
 		if _last_collision_id != -1:
-			_last_collision_id = -1
-			_last_inter_object.outline(false)
-			_last_inter_object = null
+			_deselect_object()
 			Globals.on_player_departed_from_object.emit()
+
+
+func _deselect_object():
+	_last_collision_id = -1
+	_last_inter_object.outline(false)
+	_last_inter_object = null
 
 
 func _on_any_ui_appear():
